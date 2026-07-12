@@ -8,9 +8,16 @@ router.post('/admin/setup', async (req, res) => {
   try {
     if (await Admin.countDocuments() > 0) return res.status(403).json({ error: 'Admin already exists' });
     const { email, password, name } = req.body;
+    const adminEmail = email || process.env.ADMIN_EMAIL;
+    const adminPassword = password || process.env.ADMIN_PASSWORD;
+
+    if (!adminEmail || !adminPassword) {
+      return res.status(400).json({ error: 'Admin email and password are required' });
+    }
+
     const admin = await Admin.create({
-      email: email || process.env.ADMIN_EMAIL,
-      password: password || process.env.ADMIN_PASSWORD,
+      email: adminEmail,
+      password: adminPassword,
       name: name || 'Sunday Admin'
     });
     res.json({ message: 'Admin created', token: signToken(admin._id, 'admin') });

@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const bootstrapAdmin = require('./utils/bootstrapAdmin');
 
 const app = express();
 
@@ -33,6 +34,9 @@ app.use((err, req, res, next) => {
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/dear-sunday-v2')
   .then(() => {
     console.log('MongoDB connected');
+    return bootstrapAdmin();
+  })
+  .then(() => {
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => console.log(`Dear Sunday v2 running on :${PORT}`));
   })

@@ -51,6 +51,31 @@ export function Login() {
               {loading ? 'Opening the door…' : 'Sign in →'}
             </button>
           </form>
+
+          <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid rgba(44,32,24,0.08)' }}>
+            <p style={{ fontFamily: 'DM Sans', fontSize: '10px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#9B8878', textAlign: 'center', marginBottom: 10 }}>
+              Looking for the admin entrance?
+            </p>
+            <Link
+              to="/admin/login"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                padding: '12px 16px',
+                borderRadius: 12,
+                border: '1px solid rgba(44,32,24,0.12)',
+                color: '#2C2018',
+                textDecoration: 'none',
+                fontFamily: 'DM Sans, sans-serif',
+                fontSize: '0.9rem',
+                background: 'rgba(245,240,232,0.6)',
+              }}
+            >
+              Admin login →
+            </Link>
+          </div>
         </div>
         <p style={{ textAlign: 'center', marginTop: 24, fontFamily: 'DM Sans', fontSize: '0.875rem', color: '#9B8878' }}>
           New here? <Link to="/signup" style={{ color: '#2C2018', fontWeight: 500 }}>Join the circle</Link>

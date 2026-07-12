@@ -1,7 +1,15 @@
 import axios from 'axios';
 
+function getApiBaseUrl() {
+  const configuredUrl = import.meta.env.VITE_API_URL?.trim();
+  if (!configuredUrl) return 'http://localhost:5000/api';
+
+  const normalizedUrl = configuredUrl.replace(/\/+$/, '');
+  return normalizedUrl.endsWith('/api') ? normalizedUrl : `${normalizedUrl}/api`;
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: getApiBaseUrl(),
   timeout: 20000,
 });
 
