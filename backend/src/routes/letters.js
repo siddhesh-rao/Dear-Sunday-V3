@@ -38,7 +38,7 @@ router.post('/', protectParticipant, async (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// GET /api/letters/my — participant: see their sent letters (no recipient revealed)
+// GET /api/letters/my — participant: their own sent letters (can see full content)
 router.get('/my', protectParticipant, async (req, res) => {
   try {
     const letters = await Letter.find({ author: req.participant._id })
@@ -46,14 +46,18 @@ router.get('/my', protectParticipant, async (req, res) => {
       .sort({ createdAt: -1 })
       .lean();
 
-    // Strip sensitive fields before sending
+    // Return all fields the author needs — include content so they can reread their own letters
     const safe = letters.map(l => ({
       _id: l._id,
-      content: l.content,
+      content: l.content,          // ← author can always read their own letter
       status: l.status,
       prompt: l.prompt,
+      authorPenName: l.authorPenName,
+      pairedAt: l.pairedAt,
+      deliveredAt: l.deliveredAt,
       createdAt: l.createdAt,
       updatedAt: l.updatedAt,
+      // deliberately exclude: recipient, recipientPenName, likedIps
     }));
 
     res.json({ letters: safe });
