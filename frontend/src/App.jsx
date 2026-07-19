@@ -13,6 +13,7 @@ import ProfilePage from './pages/ProfilePage';
 import AdminLogin  from './pages/AdminLogin';
 import AdminDash   from './pages/AdminDash';
 import AdminPairing from './pages/AdminPairing';
+import PromptPage  from './pages/PromptPage';
 
 function GuardParticipant({ children }) {
   const { user, role, loading } = useAuth();
@@ -49,6 +50,7 @@ export default function App() {
         }} />
         <Routes>
           <Route path="/"              element={<Landing />} />
+          <Route path="/this-week"     element={<PromptPage />} />
           <Route path="/login"         element={<Login />} />
           <Route path="/signup"        element={<Signup />} />
           <Route path="/dashboard"     element={<GuardParticipant><Dashboard /></GuardParticipant>} />

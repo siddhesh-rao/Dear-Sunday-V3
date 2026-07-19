@@ -34,7 +34,7 @@ export default function Navbar({ transparent = false }) {
           {!user && (
             <>
               <Link to="/#about" className="nav-link" style={{ color: transparent ? 'rgba(237,232,223,0.8)' : undefined }}>About</Link>
-              <Link to="/#prompt" className="nav-link" style={{ color: transparent ? 'rgba(237,232,223,0.8)' : undefined }}>Prompt</Link>
+              <Link to="/this-week" className="nav-link" style={{ color: transparent ? 'rgba(237,232,223,0.8)' : undefined }}>Prompt</Link>
               <Link to="/#how" className="nav-link" style={{ color: transparent ? 'rgba(237,232,223,0.8)' : undefined }}>How it works</Link>
               <Link to="/login" className="nav-link" style={{ color: transparent ? 'rgba(237,232,223,0.8)' : undefined }}>Sign in</Link>
               <Link to="/signup">
@@ -45,10 +45,10 @@ export default function Navbar({ transparent = false }) {
 
           {user && role === 'participant' && (
             <>
-              <Link to="/prompt"  className="nav-link">Prompt</Link>
-              <Link to="/inbox"   className="nav-link">Inbox</Link>
-              <Link to="/archive" className="nav-link">Archive</Link>
-              <Link to="/profile" className="nav-link">Profile</Link>
+              <Link to="/this-week" className="nav-link">Prompt</Link>
+              <Link to="/inbox"     className="nav-link">Inbox</Link>
+              <Link to="/archive"   className="nav-link">Archive</Link>
+              <Link to="/profile"   className="nav-link">Profile</Link>
               <button onClick={handleLogout} className="nav-link" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>Sign out</button>
             </>
           )}

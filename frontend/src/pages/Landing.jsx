@@ -141,7 +141,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65 }}
             style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
             <Link to="/signup"><button className="btn-dark">Join the circle</button></Link>
-            <a href="#prompt"><button className="btn-ghost">Read this week's prompt</button></a>
+            <Link to="/this-week"><button className="btn-ghost">Read this week's prompt</button></Link>
           </motion.div>
 
           {/* Floating letter card peek — like screenshot */}
